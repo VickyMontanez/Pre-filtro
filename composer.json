@@ -1,0 +1,40 @@
+{
+    "name": "spukm01-075/pre-filtro",
+    "description": "...",
+    "autoload": {
+        "psr-4": {
+            "App\\": [
+                "./src",
+                "./src/academic_area",
+                "./src/admin_area",
+                "./src/areas",
+                "./src/campers",
+                "./src/chapters",
+                "./src/cities",
+                "./src/contact_info",
+                "./src/countries",
+                "./src/design_area",
+                "./src/emergency_contact",
+                "./src/english_skills",
+                "./src/journey",
+                "./src/levels",
+                "./src/locations",
+                "./src/maint_area",
+                "./src/marketing_area",
+                "./src/modules",
+                "./src/optional_topics",
+                "./src/personal-ref",
+                "./src/position"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "VickyMontanezCampus",
+            "email": "vmontanez707@gmail.com"
+        }
+    ],
+    "require": {
+        "bramus/router": "~1.6"
+    }
+}

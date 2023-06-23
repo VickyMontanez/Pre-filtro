@@ -1,4 +1,4 @@
--- Active: 1686656367309@@172.16.48.204@3306@campusland
+-- Active: 1686656367309@@172.16.49.20@3306@campusland
 -- phpMyAdmin SQL Dump
 -- version 5.1.1deb5ubuntu1
 -- https://www.phpmyadmin.net/
@@ -9,6 +9,9 @@
 -- Versión de PHP: 8.1.2-1ubuntu2.11
 CREATE DATABASE prueba_camp;
 USE prueba_camp;
+
+DROP DATABASE prueba_camp;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

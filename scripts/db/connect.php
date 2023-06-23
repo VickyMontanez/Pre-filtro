@@ -1,4 +1,5 @@
 <?php
+    namespace App;
     interface enviroments
     {
         public function __get($name);
