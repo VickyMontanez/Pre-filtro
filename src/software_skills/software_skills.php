@@ -1,35 +1,34 @@
 <?php
 namespace App;
 
-class emergency_contact extends connect
+class software_skills extends connect
 {
-    private $queryPost = 'INSERT INTO emergency_contact(id, id_staff, cel_number, relationship, full_name, email) VALUES (:identification, :staffId, :cel, :relationship, :name, :email)';
-    private $queryGet = 'SELECT id AS "identification", SELECT id_staff AS "staffId", SELECT cel_number AS "cel", SELECT relationship AS "relationship", SELECT full_name AS "name", SELECT email AS "email" FROM emergency_contact';
-    private $queryUpdate = 'UPDATE emergency_contact SET id_staff = :staffId, relationship = :relationship, full_name = :name, email = :email WHERE id = :identification';
-    private $queryDelete = 'DELETE FROM emergency_contact WHERE id = :identification';
+    private $queryPost = 'INSERT INTO software_skills(id, id_team_schedule, id_trainer, id_location, id_subject, id_journey) VALUES (:identification, :id_team_schedule, :id_trainer, :id_location, :id_subject, :id_journey)';
+    private $queryGet = 'SELECT id AS "identification", SELECT id_team_schedule AS "id_team_schedule", SELECT id_trainer AS "id_trainer", SELECT id_location AS "id_location", SELECT id_subject AS "id_subject", SELECT id_journey AS "id_journey" FROM software_skills';
+    private $queryUpdate = 'UPDATE software_skills SET id_team_schedule = :id_team_schedule =, id_trainer = :id_trainer =, id_location = :id_location, id_subject = :id_subject, id_journey = :id_journey WHERE id = :identification';
+    private $queryDelete = 'DELETE FROM software_skills WHERE id = :identification';
     private $msg;
 
     use getInstance;
 
     //? Constructor */
-    function __construct(private $id = 1, private $id_staff= 1, private $cel_number= 1, public $relationship = 1, public $full_name = 1, private $email = 1)
+    function __construct(private $id = 1, private $id_team_schedule= 1, public $id_trainer = 1, private $id_location = 1, private $id_subject = 1, private $id_journey = 1)
     {
         parent::__construct();
     }
 
     //? POST Function */
-    public function emergencyContactPost()
+    public function softwareSkillsPost()
     {
         try {
             $res = $this->conx->prepare($this->queryPost);
 
             $res->bindValue("identification", $this->id);
-            $res->bindValue("staffId", $this->id_staff);
-            $res->bindValue("cel", $this->cel_number);
-            $res->bindValue("relationship", $this->relationship);
-            $res->bindValue("name", $this->full_name);
-            $res->bindValue("email", $this->email);
-         
+            $res->bindValue("id_team_schedule", $this->id_team_schedule);
+            $res->bindValue("id_trainer", $this->id_trainer);
+            $res->bindValue("id_location", $this->id_location);
+            $res->bindValue("id_subject", $this->id_subject);
+            $res->bindValue("id_journey", $this->id_journey);
 
             $res->execute();
 
@@ -41,7 +40,7 @@ class emergency_contact extends connect
         }
     }
     //? GET Function */
-    public function emergencyContactGet()
+    public function softwareSkillsGet()
     {
         try {
             $res = $this->conx->prepare($this->queryGet);
@@ -57,17 +56,18 @@ class emergency_contact extends connect
     }
 
     //? UPDATE Function */
-    function emergencyContactUpdate()
+    function softwareSkillsUpdate()
     {
         try {
             $res = $this->conx->prepare($this->queryUpdate);
 
+           
             $res->bindValue("identification", $this->id);
-            $res->bindValue("staffId", $this->id_staff);
-            $res->bindValue("cel", $this->cel_number);
-            $res->bindValue("relationship", $this->relationship);
-            $res->bindValue("name", $this->full_name);
-            $res->bindValue("email", $this->email);
+            $res->bindValue("id_team_schedule", $this->id_team_schedule);
+            $res->bindValue("id_trainer", $this->id_trainer);
+            $res->bindValue("id_location", $this->id_location);
+            $res->bindValue("id_subject", $this->id_subject);
+            $res->bindValue("id_journey", $this->id_journey);
 
             $res->execute();
 
@@ -79,7 +79,7 @@ class emergency_contact extends connect
         }
     }
     //? DELETE Function */
-    function emergencyContactDelete()
+    function softwareSkillsDelete()
     {
         try {
             $res = $this->conx->prepare($this->queryDelete);

@@ -1,31 +1,34 @@
 <?php
 namespace App;
 
-class cities extends connect
+class review_skills extends connect
 {
-    private $queryPost = 'INSERT INTO cities(id, name_city, id_region) VALUES (:identification, :name_city, :regionId)';
-    private $queryGet = 'SELECT id AS "identification", SELECT name_city AS "name_city", SELECT id_region AS "regionId" FROM cities';
-    private $queryUpdate = 'UPDATE cities SET name_city = :name_city, id_region = :regionId WHERE id = :identification';
-    private $queryDelete = 'DELETE FROM cities WHERE id = :identification';
+    private $queryPost = 'INSERT INTO review_skills(id, id_team_schedule, id_tutor, id_location, id_journey) VALUES (:identification, :id_team_schedule, :id_tutor, :id_location, :id_journey)';
+    private $queryGet = 'SELECT id AS "identification", SELECT id_team_schedule AS "id_team_schedule", SELECT id_tutor AS "id_tutor", SELECT id_location AS "id_location", SELECT id_journey AS "id_journey" FROM review_skills';
+    private $queryUpdate = 'UPDATE review_skills SET id_team_schedule = :id_team_schedule, id_tutor = :id_tutor, id_location = :id_location, id_journey = :id_journey WHERE id = :identification';
+    private $queryDelete = 'DELETE FROM review_skills WHERE id = :identification';
     private $msg;
+
     use getInstance;
 
-    //* Constructor */
-    function __construct(private $id = 1, private $name_city= 1, private $regionId = 1)
+    //? Constructor */
+    function __construct(private $id = 1, private $id_team_schedule= 1, public $id_tutor = 1, private $id_location = 1, private $id_journey = 1)
     {
         parent::__construct();
     }
 
-    //* POST Function */
-    public function citiesPost()
+    //? POST Function */
+    public function reviewSkillsPost()
     {
         try {
             $res = $this->conx->prepare($this->queryPost);
 
             $res->bindValue("identification", $this->id);
-            $res->bindValue("name_city", $this->name_city);
-            $res->bindValue("staffId", $this->id_staff);
-         
+            $res->bindValue("id_team_schedule", $this->id_team_schedule);
+            $res->bindValue("id_tutor", $this->id_tutor);
+            $res->bindValue("id_location", $this->id_location);
+            $res->bindValue("id_journey", $this->id_journey);
+
             $res->execute();
 
             $this->msg = ["Code" => 200 + $res->rowCount(), "Message" => "Inserted Data"];
@@ -35,8 +38,8 @@ class cities extends connect
             print_r($this->msg);
         }
     }
-    //* GET Function */
-    public function citiesGet()
+    //? GET Function */
+    public function reviewSkillsGet()
     {
         try {
             $res = $this->conx->prepare($this->queryGet);
@@ -51,17 +54,19 @@ class cities extends connect
         }
     }
 
-    //* UPDATE Function */
-    function citiesUpdate()
+    //? UPDATE Function */
+    function reviewSkillsUpdate()
     {
         try {
             $res = $this->conx->prepare($this->queryUpdate);
 
+           
             $res->bindValue("identification", $this->id);
-            $res->bindValue("areaId", $this->id_area);
-            $res->bindValue("staffId", $this->id_staff);
-            $res->bindValue("positionId", $this->id_position);
-            $res->bindValue("journeyId", $this->id_journey);
+            $res->bindValue("id_team_schedule", $this->id_team_schedule);
+            $res->bindValue("id_tutor", $this->id_tutor);
+            $res->bindValue("id_location", $this->id_location);
+            $res->bindValue("id_journey", $this->id_journey);
+
             $res->execute();
 
             ($res->rowCount() > 0) ? $this->msg = ["Code" => 200, "Message" => "Updated Data"] : "none";
@@ -71,8 +76,8 @@ class cities extends connect
             print_r($this->msg);
         }
     }
-    //* DELETE Function */
-    function citiesDelete()
+    //? DELETE Function */
+    function reviewSkillsDelete()
     {
         try {
             $res = $this->conx->prepare($this->queryDelete);
